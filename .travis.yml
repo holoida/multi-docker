@@ -3,25 +3,18 @@ services:
   - docker
 
 before_install: 
-    - docker build -t volodymyrholoida/react-client-test -f ./client/Dockerfile.dev .
+    - docker build -t vowkaz16072004/react-client-test -f ./client/Dockerfile.dev .
 
 script: 
-  - docker run -e CI=true volodymyrholoida/react-client-test -f ./client/Dockerfile.dev npm run test
+  - docker run -e CI=true vowkaz16072004/react-client-test -f ./client/Dockerfile.dev npm run test
 
 after_success: 
-  - docker build -t volodymyrholoida/multi-client ./client
-  - docker build -t volodymyrholoida/multi-server ./server
-  - docker build -t volodymyrholoida/multi-worker ./worker
-  - docker build -t volodymyrholoida/multi-nginx ./nginx
-
-# deploy:
-#   provider: elasticbeanstalk
-#   region: "eu-north-1"
-#   app: "frontend"
-#   env: "Frontend-env"
-#   bucket_name: "elasticbeanstalk-eu-north-1-376750145167"
-#   bucket-path: "docker"
-#   on:
-#     branch: master
-#   access_key_id: $AWS_ACCESS_KEY
-#   secret_access_key: "$AWS_SECRET_KEY"
+  - docker build -t vowkaz16072004/multi-client ./client
+  - docker build -t vowkaz16072004/multi-server ./server
+  - docker build -t vowkaz16072004/multi-worker ./worker
+  - docker build -t vowkaz16072004/multi-nginx ./nginx
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push vowkaz16072004/multi-client
+  - docker push vowkaz16072004/multi-server
+  - docker push vowkaz16072004/multi-worker
+  - docker push vowkaz16072004/multi-nginx

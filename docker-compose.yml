@@ -1,11 +1,11 @@
-version: "3"
+version: '3'
 services:
   client:
-    image: "vowkaz16072004/multi-client"
+    image: 'vowkaz16072004/multi-client'
     mem_limit: 128m
     hostname: client
   server:
-    image: "vowkaz16072004/multi-server"
+    image: 'vowkaz16072004/multi-server'
     mem_limit: 128m
     hostname: api
     environment:
@@ -17,16 +17,15 @@ services:
       - PGPASSWORD=$PGPASSWORD
       - PGPORT=$PGPORT
   worker:
-    image: "vowkaz16072004/multi-worker"
+    image: 'vowkaz16072004/multi-worker'
     mem_limit: 128m
     hostname: worker
     environment:
       - REDIS_HOST=$REDIS_HOST
       - REDIS_PORT=$REDIS_PORT
   nginx:
-    image: "vowkaz16072004/multi-nginx"
+    image: 'vowkaz16072004/multi-nginx'
     mem_limit: 128m
     hostname: nginx
     ports:
-      - "80:80"
-
+      - '80:80'

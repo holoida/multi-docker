@@ -1,39 +1,30 @@
 {
-  "AWSEBDockerrunVersion": 2,
+  "AWSEBDockerrunVersion": 3,
   "containerDefinitions": [
     {
       "name": "client",
       "image": "vowkaz16072004/multi-client",
-      "hostname": "client",
-      "essential": false,
       "memory": 256
     },
     {
       "name": "server",
       "image": "vowkaz16072004/multi-server",
-      "hostname": "api",
-      "essential": false,
       "memory": 256
     },
     {
       "name": "worker",
       "image": "vowkaz16072004/multi-worker",
-      "hostname": "worker",
-      "essential": false,
       "memory": 256
     },
     {
       "name": "nginx",
       "image": "vowkaz16072004/multi-nginx",
-      "hostname": "nginx",
-      "essential": true,
       "portMappings": [
         {
           "hostPort": 80,
-          "containerPort": 80
+          "containerPort": 8080
         }
       ],
-      "links": ["client", "server"],
       "memory": 256
     }
   ]
